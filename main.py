@@ -84,7 +84,7 @@ async def buy_rlc(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         rlc_amount = amount_ton * 10
         response = await send_transaction(wallet_address, RLC_CONTRACT_ADDRESS, amount_ton, token="TON")
-        await update.message.reply_text(f"{rlc_amount} RLC به کیف پول شما اضافه شد.") 
+       await update.message.reply_text(f"{rlc_amount} RLC به کیف پول شما اضافه شد.")
 {response}")
     except Exception as e:
         await update.message.reply_text("خطا در خرید RLC. لطفاً مقدار وارد شده را بررسی کنید.")
