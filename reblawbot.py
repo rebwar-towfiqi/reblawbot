@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 
 import os
@@ -12,7 +11,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 # Load environment variables
 load_dotenv()
 openai.api_key = os.getenv("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")
-BOT_TOKEN = os.getenv("7546350640:AAFuB3zvCWTQhnitKXD-F3ChSOF7LJK4SOk")
+BOT_TOKEN = os.getenv("8029089620:AAEYT40tZjUe6uVD-iyzIQSCLY6JFDzG0Nk")
 TON_API_URL = os.getenv("TON_API_URL", "https://tonapi.io")
 RLC_CONTRACT_ADDRESS = os.getenv("RLC_CONTRACT_ADDRESS")
 
@@ -84,8 +83,7 @@ async def buy_rlc(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         rlc_amount = amount_ton * 10
         response = await send_transaction(wallet_address, RLC_CONTRACT_ADDRESS, amount_ton, token="TON")
-        await update.message.reply_text(f"{rlc_amount} RLC به کیف پول شما اضافه شد.
-{response}")
+        await update.message.reply_text(f"{rlc_amount} RLC به کیف پول شما اضافه شد.\n{response}")
     except Exception as e:
         await update.message.reply_text("خطا در خرید RLC. لطفاً مقدار وارد شده را بررسی کنید.")
 
@@ -100,8 +98,7 @@ async def ai_response(update: Update, context: ContextTypes.DEFAULT_TYPE):
             messages=[{"role": "user", "content": question}]
         )
         ai_answer = response.choices[0].message.content
-        await update.message.reply_text(f"پاسخ هوش مصنوعی:
-{ai_answer}")
+        await update.message.reply_text(f"پاسخ هوش مصنوعی:\n{ai_answer}")
     except Exception:
         await update.message.reply_text("خطا در ارتباط با سرور هوش مصنوعی. لطفاً بعداً تلاش کنید.")
 
@@ -115,27 +112,21 @@ async def wallet(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "سلام! به RebLawBot خوش آمدید.
-برای شروع، از منوی زیر استفاده کنید یا دستور /help را ارسال کنید.",
+        "سلام! به RebLawBot خوش آمدید.\nبرای شروع، از منوی زیر استفاده کنید یا دستور /help را ارسال کنید.",
         reply_markup=get_main_menu()
     )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        "/start - شروع
-"
-        "/help - راهنما
-"
-        "/connect - اتصال کیف پول
-"
-        "/check - بررسی اتصال
-"
-        "/buy_rlc - خرید RLC
-"
-        "/wallet - موجودی کیف پول
-"
-        "/ai - سوال حقوقی با هوش مصنوعی"
-    )
+    await update.message.reply_text("""
+    لیست دستورات:
+    /start - شروع
+    /help - راهنما
+    /connect - اتصال کیف پول
+    /check - بررسی اتصال
+    /buy_rlc - خرید RLC
+    /wallet - موجودی کیف پول
+    /ai - سوال حقوقی با هوش مصنوعی
+    """)
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
