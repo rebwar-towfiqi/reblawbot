@@ -11,8 +11,8 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 # Load environment variables
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+openai.api_key = os.getenv("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")
+BOT_TOKEN = os.getenv("7546350640:AAFuB3zvCWTQhnitKXD-F3ChSOF7LJK4SOk")
 TON_API_URL = os.getenv("TON_API_URL", "https://tonapi.io")
 RLC_CONTRACT_ADDRESS = os.getenv("RLC_CONTRACT_ADDRESS")
 
